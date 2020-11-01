@@ -4,9 +4,6 @@
 
 screenView::screenView()
 {
-
-
-	    button1.setXY(100, 120);
 }
 
 void screenView::setupScreen()

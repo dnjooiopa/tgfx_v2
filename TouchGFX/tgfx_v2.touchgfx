@@ -29,10 +29,36 @@
             "Style": "Style4",
             "Name": "button1",
             "X": 155,
-            "Y": 106,
+            "Y": 183,
             "Width": 170,
             "Height": 60,
             "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 250,
+              "Green": 0,
+              "Blue": 0
+            },
+            "CenterX": 20,
+            "CenterY": 20,
+            "Radius": 20,
+            "LineWidth": 0,
+            "StartAngle": 0,
+            "EndAngle": 360,
+            "CapPrecision": "Butt",
+            "Alpha": 255,
+            "Name": "ball",
+            "X": 220,
+            "Y": 87,
+            "Width": 43,
+            "Height": 49,
+            "Type": "Circle",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -42,22 +68,21 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "s_s1",
+            "InteractionName": "move_up",
             "HasCompletedTrigger": false,
             "Trigger": {
               "TriggerComponent": "button1",
               "Type": "TriggerClicked"
             },
             "Action": {
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen1",
-              "Type": "ActionGotoScreen"
+              "FunctionName": "move_up",
+              "Type": "ActionCustom"
             }
           }
         ],
         "Name": "screen",
         "OverrideDefaultBufferSize": false,
-        "CanvasBufferSize": 0
+        "CanvasBufferSize": 7200
       },
       {
         "Components": [

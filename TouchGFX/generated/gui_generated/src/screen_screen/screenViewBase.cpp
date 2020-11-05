@@ -9,15 +9,26 @@ screenViewBase::screenViewBase() :
     buttonCallback(this, &screenViewBase::buttonCallbackHandler)
 {
 
+    touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
+
     box1.setPosition(0, 0, 480, 272);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
 
-    button1.setXY(155, 106);
+    button1.setXY(155, 183);
     button1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
     button1.setAction(buttonCallback);
 
+    ball.setPosition(220, 87, 41, 41);
+    ball.setCenter(20, 20);
+    ball.setRadius(20);
+    ball.setLineWidth(0);
+    ball.setArc(0, 360);
+    ballPainter.setColor(touchgfx::Color::getColorFrom24BitRGB(250, 0, 0));
+    ball.setPainter(ballPainter);
+
     add(box1);
     add(button1);
+    add(ball);
 }
 
 void screenViewBase::setupScreen()
@@ -29,9 +40,9 @@ void screenViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
     if (&src == &button1)
     {
-        //s_s1
-        //When button1 clicked change screen to Screen1
-        //Go to Screen1 with no screen transition
-        application().gotoScreen1ScreenNoTransition();
+        //move_up
+        //When button1 clicked call virtual function
+        //Call move_up
+        move_up();
     }
 }

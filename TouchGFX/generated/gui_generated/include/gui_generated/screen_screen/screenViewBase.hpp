@@ -9,6 +9,8 @@
 #include <gui/screen_screen/screenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Button.hpp>
+#include <touchgfx/widgets/canvas/Circle.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB888.hpp>
 
 class screenViewBase : public touchgfx::View<screenPresenter>
 {
@@ -16,6 +18,14 @@ public:
     screenViewBase();
     virtual ~screenViewBase() {}
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void move_up()
+    {
+        // Override and implement this function in screen
+    }
 
 protected:
     FrontendApplication& application() {
@@ -27,6 +37,8 @@ protected:
      */
     touchgfx::Box box1;
     touchgfx::Button button1;
+    touchgfx::Circle ball;
+    touchgfx::PainterRGB888 ballPainter;
 
 private:
 
@@ -40,6 +52,11 @@ private:
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint16_t CANVAS_BUFFER_SIZE = 7200;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 };
 
 #endif // SCREENVIEWBASE_HPP

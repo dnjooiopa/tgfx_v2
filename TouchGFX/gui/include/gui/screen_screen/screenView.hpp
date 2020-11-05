@@ -11,7 +11,10 @@ public:
     virtual ~screenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void move_up();
+
 protected:
+    int8_t direction = 10;
 };
 
 #endif // SCREENVIEW_HPP

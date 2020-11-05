@@ -15,3 +15,11 @@ void screenView::tearDownScreen()
 {
     screenViewBase::tearDownScreen();
 }
+
+void  screenView::move_up(){
+	if(ball.getY() < 0 || ball.getY() > 150)
+		direction = -direction;
+	ball.setY(ball.getY()+direction);
+	ball.invalidate();
+
+}

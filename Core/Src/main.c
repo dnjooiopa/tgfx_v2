@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include <stm32746g_discovery.h>
 #include "string.h"
+#include "ledTask.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,7 +91,6 @@ SDRAM_HandleTypeDef hsdram1;
 osThreadId defaultTaskHandle;
 osThreadId ledTaskHandle;
 
-xQueueHandle gui_msg_q;
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
 /* USER CODE END PV */
@@ -112,7 +112,6 @@ static void MX_SPDIFRX_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void const * argument);
-void ledTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 void transmit(char *message){
@@ -1195,26 +1194,6 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
     osDelay(1);
-  }
-  /* USER CODE END 5 */
-}
-
-void ledTask(void const * argument)
-{
-  /* USER CODE BEGIN 5 */
-	BSP_LED_Init(LED_GREEN);
-
-	uint8_t msg = 0;
-  /* Infinite loop */
-  for(;;)
-  {
-
-    vTaskDelay(20);
-
-    if (xQueueReceive(gui_msg_q, &msg, 0) == pdTRUE){
-    	BSP_LED_Toggle(LED_GREEN);
-    }
-
   }
   /* USER CODE END 5 */
 }

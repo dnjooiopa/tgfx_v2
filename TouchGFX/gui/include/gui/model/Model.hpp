@@ -7,6 +7,7 @@ class ModelListener;
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
+#include "ledTask.h"
 
 extern xQueueHandle gui_msg_q;
 

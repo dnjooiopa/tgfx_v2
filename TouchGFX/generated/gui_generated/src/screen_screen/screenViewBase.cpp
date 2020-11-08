@@ -4,6 +4,7 @@
 #include <gui_generated/screen_screen/screenViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include "BitmapDatabase.hpp"
+#include <texts/TextKeysAndLanguages.hpp>
 
 screenViewBase::screenViewBase() :
     buttonCallback(this, &screenViewBase::buttonCallbackHandler)
@@ -14,11 +15,11 @@ screenViewBase::screenViewBase() :
     box1.setPosition(0, 0, 480, 272);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
 
-    button1.setXY(155, 183);
+    button1.setXY(22, 197);
     button1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
     button1.setAction(buttonCallback);
 
-    ball.setPosition(220, 87, 41, 41);
+    ball.setPosition(86, 87, 43, 49);
     ball.setCenter(20, 20);
     ball.setRadius(20);
     ball.setLineWidth(0);
@@ -26,9 +27,17 @@ screenViewBase::screenViewBase() :
     ballPainter.setColor(touchgfx::Color::getColorFrom24BitRGB(250, 0, 0));
     ball.setPainter(ballPainter);
 
+    ledControl.setXY(283, 197);
+    ledControl.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
+    ledControl.setLabelText(touchgfx::TypedText(T_SINGLEUSEID1));
+    ledControl.setLabelColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    ledControl.setLabelColorPressed(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    ledControl.setAction(buttonCallback);
+
     add(box1);
     add(button1);
     add(ball);
+    add(ledControl);
 }
 
 void screenViewBase::setupScreen()
@@ -44,5 +53,12 @@ void screenViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When button1 clicked call virtual function
         //Call move_up
         move_up();
+    }
+    else if (&src == &ledControl)
+    {
+        //toggleLED
+        //When ledControl clicked call virtual function
+        //Call toggleLED
+        toggleLED();
     }
 }

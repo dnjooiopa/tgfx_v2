@@ -12,6 +12,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void move_up();
+    virtual void toggleLED();
 
 protected:
     int8_t direction = 10;

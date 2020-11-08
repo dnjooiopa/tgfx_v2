@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stm32746g_discovery.h>
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -87,6 +88,9 @@ UART_HandleTypeDef huart1;
 SDRAM_HandleTypeDef hsdram1;
 
 osThreadId defaultTaskHandle;
+osThreadId ledTaskHandle;
+
+xQueueHandle gui_msg_q;
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
 /* USER CODE END PV */
@@ -108,8 +112,13 @@ static void MX_SPDIFRX_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void const * argument);
+void ledTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
+void transmit(char *message){
+	HAL_UART_Transmit(&huart1, (unsigned char*)message, strlen(message), 1000);
+	HAL_UART_Transmit(&huart1, (unsigned char*)"\n\r", 2, 1000);
+};
 
 /* USER CODE END PFP */
 
@@ -127,6 +136,12 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
+
+  /* Enable I-Cache---------------------------------------------------------*/
+  SCB_EnableICache();
+
+  /* Enable D-Cache---------------------------------------------------------*/
+  SCB_EnableDCache();
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -162,7 +177,6 @@ int main(void)
   MX_FATFS_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -186,6 +200,8 @@ int main(void)
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 4096);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  osThreadDef(led, ledTask, osPriorityNormal, 0, 512);
+  ledTaskHandle = osThreadCreate(osThread(led), NULL);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -1179,6 +1195,26 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
     osDelay(1);
+  }
+  /* USER CODE END 5 */
+}
+
+void ledTask(void const * argument)
+{
+  /* USER CODE BEGIN 5 */
+	BSP_LED_Init(LED_GREEN);
+
+	uint8_t msg = 0;
+  /* Infinite loop */
+  for(;;)
+  {
+
+    vTaskDelay(20);
+
+    if (xQueueReceive(gui_msg_q, &msg, 0) == pdTRUE){
+    	BSP_LED_Toggle(LED_GREEN);
+    }
+
   }
   /* USER CODE END 5 */
 }

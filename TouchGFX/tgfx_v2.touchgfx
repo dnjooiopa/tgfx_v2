@@ -28,8 +28,8 @@
             "Alpha": 255,
             "Style": "Style4",
             "Name": "button1",
-            "X": 155,
-            "Y": 183,
+            "X": 22,
+            "Y": 197,
             "Width": 170,
             "Height": 60,
             "Type": "Button",
@@ -54,11 +54,39 @@
             "CapPrecision": "Butt",
             "Alpha": 255,
             "Name": "ball",
-            "X": 220,
+            "X": 86,
             "Y": 87,
             "Width": 43,
             "Height": 49,
             "Type": "Circle",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Dark_Buttons_Round_Edge_small_pressed.png",
+            "Released": "__designer\\Dark_Buttons_Round_Edge_small.png",
+            "Alpha": 255,
+            "TextId": "SingleUseId1",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Name": "ledControl",
+            "X": 283,
+            "Y": 197,
+            "Width": 170,
+            "Height": 60,
+            "Type": "ButtonWithLabel",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -76,6 +104,18 @@
             },
             "Action": {
               "FunctionName": "move_up",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "toggleLED",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "ledControl",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "toggleLED",
               "Type": "ActionCustom"
             }
           }
@@ -144,6 +184,12 @@
       }
     ],
     "CustomContainerDefinitions": [],
+    "TextEntries": [
+      {
+        "TextEntryId": "SingleUseId1",
+        "IsResource": false
+      }
+    ],
     "Name": "tgfx_v2",
     "Resolution": {
       "Width": 480,

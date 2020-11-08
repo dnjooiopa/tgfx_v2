@@ -23,3 +23,7 @@ void  screenView::move_up(){
 	ball.invalidate();
 
 }
+
+void screenView::toggleLED(){
+	presenter->toggleLED();
+}

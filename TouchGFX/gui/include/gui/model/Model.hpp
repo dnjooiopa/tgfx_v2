@@ -3,6 +3,13 @@
 
 class ModelListener;
 
+#include "stm32746g_discovery.h"
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "task.h"
+
+extern xQueueHandle gui_msg_q;
+
 class Model
 {
 public:
@@ -14,6 +21,11 @@ public:
     }
 
     void tick();
+
+    void toggleLED(){
+    	uint8_t msg = 1;
+    	xQueueSend(gui_msg_q, &msg, 0);
+    }
 protected:
     ModelListener* modelListener;
 };

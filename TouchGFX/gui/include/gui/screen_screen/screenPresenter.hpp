@@ -27,6 +27,10 @@ public:
 
     virtual ~screenPresenter() {};
 
+    void toggleLED(){
+    	model->toggleLED();
+    }
+
 private:
     screenPresenter();
 

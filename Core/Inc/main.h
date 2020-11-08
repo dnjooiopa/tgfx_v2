@@ -98,10 +98,6 @@ void Error_Handler(void);
 #define Audio_INT_GPIO_Port GPIOD
 #define FMC_D2_Pin GPIO_PIN_0
 #define FMC_D2_GPIO_Port GPIOD
-#define SDMMC_D3_Pin GPIO_PIN_11
-#define SDMMC_D3_GPIO_Port GPIOC
-#define SDMMC_D2_Pin GPIO_PIN_10
-#define SDMMC_D2_GPIO_Port GPIOC
 #define NC1_Pin GPIO_PIN_8
 #define NC1_GPIO_Port GPIOI
 #define SAI2_MCLKA_Pin GPIO_PIN_4

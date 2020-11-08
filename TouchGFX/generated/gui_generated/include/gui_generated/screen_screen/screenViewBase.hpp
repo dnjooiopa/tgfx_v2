@@ -11,6 +11,7 @@
 #include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/widgets/canvas/Circle.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB888.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class screenViewBase : public touchgfx::View<screenPresenter>
 {
@@ -27,6 +28,11 @@ public:
         // Override and implement this function in screen
     }
 
+    virtual void toggleLED()
+    {
+        // Override and implement this function in screen
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
@@ -39,6 +45,7 @@ protected:
     touchgfx::Button button1;
     touchgfx::Circle ball;
     touchgfx::PainterRGB888 ballPainter;
+    touchgfx::ButtonWithLabel ledControl;
 
 private:
 

@@ -122,8 +122,6 @@ void Error_Handler(void);
 #define FMC_D3_GPIO_Port GPIOD
 #define ARDUINO_D7_Pin GPIO_PIN_3
 #define ARDUINO_D7_GPIO_Port GPIOI
-#define ARDUINO_D8_Pin GPIO_PIN_2
-#define ARDUINO_D8_GPIO_Port GPIOI
 #define uSD_Detect_Pin GPIO_PIN_13
 #define uSD_Detect_GPIO_Port GPIOC
 #define FMC_A0_Pin GPIO_PIN_0

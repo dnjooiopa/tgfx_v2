@@ -44,8 +44,10 @@ void btnTask(void* params)
 		//  Read state of button and only send message if pressed
 		//*******************************************************
 		//
+		btn_state = !HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_2);
 
-		if(HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_11)==GPIO_PIN_SET){
+		if(HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_11)==GPIO_PIN_SET || btn_state){
+			vTaskDelay(50);
 			xQueueSend(gui_msg_q, &msg, 0);
 		}
 	}

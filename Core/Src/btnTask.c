@@ -47,7 +47,7 @@ void btnTask(void* params)
 		btn_state = !HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_2);
 
 		if(HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_11)==GPIO_PIN_SET || btn_state){
-			vTaskDelay(50);
+			vTaskDelay(100);
 			xQueueSend(gui_msg_q, &msg, 0);
 		}
 	}

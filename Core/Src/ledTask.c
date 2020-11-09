@@ -8,10 +8,9 @@
 
 xQueueHandle gui_msg_q;
 
-void ledTask(void const * argument)
+void ledTask(void * argument)
 {
   /* USER CODE BEGIN 5 */
-	BSP_LED_Init(LED_GREEN);
 
 	gui_msg_q = xQueueGenericCreate(1, 1, 0);
 
@@ -21,7 +20,7 @@ void ledTask(void const * argument)
   {
     vTaskDelay(20);
     if (xQueueReceive(gui_msg_q, &msg, 0) == pdTRUE){
-    	BSP_LED_Toggle(LED_GREEN);
+      	HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
     }
 
   }

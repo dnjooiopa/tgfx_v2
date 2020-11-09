@@ -28,6 +28,7 @@
 #include <stm32746g_discovery.h>
 #include "string.h"
 #include "ledTask.h"
+#include "btnTask.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,10 +90,11 @@ UART_HandleTypeDef huart1;
 SDRAM_HandleTypeDef hsdram1;
 
 osThreadId defaultTaskHandle;
-osThreadId ledTaskHandle;
-
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
+
+osThreadId ledTaskHandle;
+osThreadId btnTaskHandle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -199,10 +201,14 @@ int main(void)
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 4096);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  /* USER CODE BEGIN RTOS_THREADS */
+
   osThreadDef(led, ledTask, osPriorityNormal, 0, 512);
   ledTaskHandle = osThreadCreate(osThread(led), NULL);
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
+
+
+  osThreadDef(btn, btnTask, osPriorityNormal, 0, 512);
+  btnTaskHandle = osThreadCreate(osThread(btn), NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -1128,6 +1134,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DCMI_PWR_EN_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PI11 */
+  GPIO_InitStruct.Pin = GPIO_PIN_11;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LCD_INT_Pin */
   GPIO_InitStruct.Pin = LCD_INT_Pin;

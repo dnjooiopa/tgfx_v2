@@ -70,8 +70,10 @@ typedef enum
 {  
   BUTTON_WAKEUP = 0,
   BUTTON_TAMPER = 1,
-  BUTTON_KEY = 2
+  BUTTON_KEY = 2,
 }Button_TypeDef;
+
+#define BUTTON_USER BUTTON_WAKEUP
 
 typedef enum 
 {  

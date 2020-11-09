@@ -21,3 +21,7 @@ void screenPresenter::deactivate()
 void screenPresenter::move_up(){
 	view.move_up();
 }
+
+void screenPresenter::toggleLED(){
+    model->toggleLED();
+}

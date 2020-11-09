@@ -21,7 +21,7 @@ void ledTask(void * argument)
     vTaskDelay(20);
     if (xQueueReceive(gui_msg_q, &msg, 0) == pdTRUE){
       	HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
-      	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+      	//HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
     }
 
   }

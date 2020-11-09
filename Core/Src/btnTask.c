@@ -21,6 +21,7 @@ void btnTask(void* params)
 {
 	uint32_t btn_state = 0;
 	uint8_t msg = 0;
+	uint8_t btn_msg = 1;
 
   //*******************************************************
 	//  GPIO MODE: Init BUTTON_USER
@@ -46,10 +47,9 @@ void btnTask(void* params)
 		//
 		btn_state = !HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_2);
 
-		if(HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_11)==GPIO_PIN_SET || btn_state){
-			vTaskDelay(100);
-			xQueueSend(gui_msg_q, &msg, 0);
-			xQueueSend(btn_msg_q, &msg, 0);
+		if(HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_11) == GPIO_PIN_SET || btn_state){
+			vTaskDelay(50);
+			xQueueSend(btn_msg_q, &btn_msg, 0);
 		}
 	}
 }

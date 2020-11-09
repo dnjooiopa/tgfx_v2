@@ -29,9 +29,7 @@ public:
 
     virtual void move_up();
 
-    void toggleLED(){
-    	model->toggleLED();
-    }
+    void toggleLED();
 
 private:
     screenPresenter();

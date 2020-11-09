@@ -20,7 +20,8 @@ void Model::tick()
 {
 	uint8_t msg;
 	if (xQueueReceive(btn_msg_q, &msg, 0) == pdTRUE){
-		move_up();
+		if(msg==1)
+			move_up();
 	}
 }
 

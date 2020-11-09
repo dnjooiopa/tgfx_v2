@@ -206,7 +206,6 @@ int main(void)
   osThreadDef(led, ledTask, osPriorityNormal, 0, 512);
   ledTaskHandle = osThreadCreate(osThread(led), NULL);
 
-
   osThreadDef(btn, btnTask, osPriorityNormal, 0, 512);
   btnTaskHandle = osThreadCreate(osThread(btn), NULL);
   /* USER CODE END RTOS_THREADS */

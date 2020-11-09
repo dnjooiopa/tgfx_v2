@@ -17,3 +17,7 @@ void screenPresenter::deactivate()
 {
 	HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_RESET);
 }
+
+void screenPresenter::move_up(){
+	view.move_up();
+}

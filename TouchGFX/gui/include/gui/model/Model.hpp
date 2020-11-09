@@ -16,10 +16,13 @@ public:
 
     void tick();
 
+    void move_up();
+
     void toggleLED();
 
 protected:
     ModelListener* modelListener;
+
 };
 
 #endif // MODEL_HPP

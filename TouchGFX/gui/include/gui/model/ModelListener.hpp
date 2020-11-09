@@ -10,6 +10,8 @@ public:
     
     virtual ~ModelListener() {}
 
+    virtual void move_up() {}
+
     void bind(Model* m)
     {
         model = m;

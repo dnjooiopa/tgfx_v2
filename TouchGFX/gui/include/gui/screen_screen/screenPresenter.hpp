@@ -27,6 +27,8 @@ public:
 
     virtual ~screenPresenter() {};
 
+    virtual void move_up();
+
     void toggleLED(){
     	model->toggleLED();
     }

@@ -90,14 +90,14 @@ UART_HandleTypeDef huart1;
 SDRAM_HandleTypeDef hsdram1;
 
 osThreadId defaultTaskHandle;
+osThreadId uartTaskHandle;
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
 
 osThreadId ledTaskHandle;
 osThreadId btnTaskHandle;
-osThreadId uartTaskHandle;
 
-char msgBuffer[3];
+char msgBuffer[5];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -117,6 +117,7 @@ static void MX_SPDIFRX_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void const * argument);
+void StartUartTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 void transmit(char *message){
@@ -124,10 +125,8 @@ void transmit(char *message){
 	HAL_UART_Transmit(&huart1, (unsigned char*)"\n\r", 2, 1000);
 };
 
-void uartTask(void const * argument);
-
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	HAL_UART_Receive_IT(&huart1, msgBuffer, 3);
+	HAL_UART_Receive_IT(&huart1, msgBuffer, 5);
 }
 /* USER CODE END PFP */
 
@@ -209,6 +208,10 @@ int main(void)
   osThreadDef(defaultTask, StartDefaultTask, osPriorityHigh, 0, 4096);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  /* definition and creation of uartTask */
+  osThreadDef(uartTask, StartUartTask, osPriorityNormal, 0, 512);
+  uartTaskHandle = osThreadCreate(osThread(uartTask), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
 
   osThreadDef(led, ledTask, osPriorityNormal, 0, 512);
@@ -217,8 +220,8 @@ int main(void)
   osThreadDef(btn, btnTask, osPriorityNormal, 0, 512);
   btnTaskHandle = osThreadCreate(osThread(btn), NULL);
 
-  osThreadDef(uart, uartTask, osPriorityNormal, 0, 512);
-   btnTaskHandle = osThreadCreate(osThread(uart), NULL);
+ // osThreadDef(uart, uartTask, osPriorityNormal, 0, 512);
+  // btnTaskHandle = osThreadCreate(osThread(uart), NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -1180,13 +1183,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void uartTask(void const * argument){
-	 HAL_UART_Receive_IT(&huart1, msgBuffer, 3);
-	 for(;;)
-	  {
-
-	  }
-}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -1209,6 +1205,23 @@ void StartDefaultTask(void const * argument)
   /* USER CODE END 5 */
 }
 
+/* USER CODE BEGIN Header_StartUartTask */
+/**
+* @brief Function implementing the uartTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartUartTask */
+void StartUartTask(void const * argument)
+{
+  /* USER CODE BEGIN StartUartTask */
+  /* Infinite loop */
+	HAL_UART_Receive_IT(&huart1, msgBuffer, 3);
+  for(;;)
+  {
+  }
+  /* USER CODE END StartUartTask */
+}
 
 /**
   * @brief  Period elapsed callback in non blocking mode

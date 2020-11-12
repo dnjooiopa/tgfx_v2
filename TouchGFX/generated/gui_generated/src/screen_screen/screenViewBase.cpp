@@ -34,10 +34,18 @@ screenViewBase::screenViewBase() :
     ledControl.setLabelColorPressed(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
     ledControl.setAction(buttonCallback);
 
+    RX_text_area.setPosition(12, 18, 468, 37);
+    RX_text_area.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
+    RX_text_area.setLinespacing(0);
+    Unicode::snprintf(RX_text_areaBuffer, RX_TEXT_AREA_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID3).getText());
+    RX_text_area.setWildcard(RX_text_areaBuffer);
+    RX_text_area.setTypedText(touchgfx::TypedText(T_SINGLEUSEID2));
+
     add(box1);
     add(button1);
     add(ball);
     add(ledControl);
+    add(RX_text_area);
 }
 
 void screenViewBase::setupScreen()

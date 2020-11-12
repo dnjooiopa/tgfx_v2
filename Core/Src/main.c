@@ -58,7 +58,8 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define UART6_BUFFER_SIZE 6
+#define UART1_BUFFER_SIZE 5
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -98,7 +99,11 @@ static FMC_SDRAM_CommandTypeDef Command;
 osThreadId ledTaskHandle;
 osThreadId btnTaskHandle;
 
-char msgBuffer[5];
+char msgBufferUART6[UART6_BUFFER_SIZE];
+char msgBufferUART1[UART1_BUFFER_SIZE];
+
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -128,8 +133,16 @@ void transmit(char *message){
 };
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	HAL_UART_Receive_IT(&huart6, msgBuffer, 5);
+
+	if(huart->Instance == USART1){
+		HAL_UART_Receive_IT(&huart1, (unsigned char*)msgBufferUART1, 5);
+	}else{
+		HAL_UART_Receive_IT(&huart6, (unsigned char*)msgBufferUART6, strlen(msgBufferUART6));
+	}
+
 }
+
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -1255,7 +1268,8 @@ void StartUartTask(void const * argument)
 {
   /* USER CODE BEGIN StartUartTask */
   /* Infinite loop */
-	HAL_UART_Receive_IT(&huart6, msgBuffer, 5);
+	HAL_UART_Receive_IT(&huart1, (unsigned char*)msgBufferUART1, UART1_BUFFER_SIZE);
+	HAL_UART_Receive_IT(&huart6, (unsigned char*)msgBufferUART6, UART6_BUFFER_SIZE);
   for(;;)
   {
   }

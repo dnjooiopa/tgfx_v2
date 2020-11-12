@@ -29,6 +29,8 @@
 #include "string.h"
 #include "ledTask.h"
 #include "btnTask.h"
+
+#include "PollingRoutines.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,12 +95,15 @@ SDRAM_HandleTypeDef hsdram1;
 
 osThreadId defaultTaskHandle;
 osThreadId uartTaskHandle;
+osSemaphoreId binarySemMsgUart1Handle;
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
 
+// Custom Task
 osThreadId ledTaskHandle;
 osThreadId btnTaskHandle;
 
+// Buffer for UART
 char msgBufferUART6[UART6_BUFFER_SIZE];
 char msgBufferUART1[UART1_BUFFER_SIZE];
 
@@ -131,16 +136,6 @@ void transmit(char *message){
 	HAL_UART_Transmit(&huart1, (unsigned char*)message, strlen(message), 1000);
 	HAL_UART_Transmit(&huart1, (unsigned char*)"\n\r", 2, 1000);
 };
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-
-	if(huart->Instance == USART1){
-		HAL_UART_Receive_IT(&huart1, (unsigned char*)msgBufferUART1, 5);
-	}else{
-		HAL_UART_Receive_IT(&huart6, (unsigned char*)msgBufferUART6, strlen(msgBufferUART6));
-	}
-
-}
 
 
 /* USER CODE END PFP */
@@ -206,6 +201,11 @@ int main(void)
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* definition and creation of binarySemMsgUart1 */
+  osSemaphoreDef(binarySemMsgUart1);
+  binarySemMsgUart1Handle = osSemaphoreCreate(osSemaphore(binarySemMsgUart1), 1);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -1268,10 +1268,14 @@ void StartUartTask(void const * argument)
 {
   /* USER CODE BEGIN StartUartTask */
   /* Infinite loop */
-	HAL_UART_Receive_IT(&huart1, (unsigned char*)msgBufferUART1, UART1_BUFFER_SIZE);
-	HAL_UART_Receive_IT(&huart6, (unsigned char*)msgBufferUART6, UART6_BUFFER_SIZE);
+	//HAL_UART_Receive_IT(&huart1, (unsigned char*)msgBufferUART1, UART1_BUFFER_SIZE);
+	//HAL_UART_Receive_IT(&huart6, (unsigned char*)msgBufferUART6, UART6_BUFFER_SIZE);
+
+	PollingInit();
   for(;;)
   {
+	  PollingRoutine();
+	  osDelay(1);
   }
   /* USER CODE END StartUartTask */
 }

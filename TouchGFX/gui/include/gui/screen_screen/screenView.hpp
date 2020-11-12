@@ -18,6 +18,8 @@ public:
 
     virtual void updateWildCard();
 
+    virtual void updateUartText();
+
 protected:
     int8_t direction = 10;
     uint8_t strState = 1;

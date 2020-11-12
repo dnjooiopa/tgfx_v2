@@ -132,12 +132,6 @@ void StartDefaultTask(void const * argument);
 void StartUartTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
-void transmit(char *message){
-	HAL_UART_Transmit(&huart1, (unsigned char*)message, strlen(message), 1000);
-	HAL_UART_Transmit(&huart1, (unsigned char*)"\n\r", 2, 1000);
-};
-
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/

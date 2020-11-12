@@ -6,6 +6,7 @@
 #include "string.h"
 
 extern UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart6;
 
 extern osSemaphoreId binarySemMsgUart1Handle;
 
@@ -15,7 +16,7 @@ uint8_t msgIndex = 0;
 uint8_t msgRdyFlag = 0;
 
 void PollingInit(){
-	HAL_UART_Receive_IT(&huart1, uartMsgData, 1);
+	HAL_UART_Receive_IT(&huart6, uartMsgData, 1);
 }
 
 
@@ -43,5 +44,5 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		uartMsgBuffer[msgIndex++] = uartMsgData[0];
 	}
 
-	HAL_UART_Receive_IT(&huart1, uartMsgData, 1);
+	HAL_UART_Receive_IT(&huart6, uartMsgData, 1);
 }

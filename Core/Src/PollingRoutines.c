@@ -34,13 +34,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		memset(&uartMsgBuffer, 0, sizeof(uartMsgBuffer));
 	}
 
-	if(uartMsgData[0] != 113){
-		uartMsgBuffer[msgIndex++] = uartMsgData[0];
-	}else{
-		uartMsgBuffer[msgIndex] = uartMsgData[0];
+	if(uartMsgData[0] == 13 || msgIndex==15){
+		uartMsgBuffer[msgIndex] = 0;
 		msgIndex = 0;
 
 		msgRdyFlag = 1;
+	}else {
+		uartMsgBuffer[msgIndex++] = uartMsgData[0];
 	}
 
 	HAL_UART_Receive_IT(&huart1, uartMsgData, 1);

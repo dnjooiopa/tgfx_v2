@@ -22,6 +22,7 @@ public:
     virtual void controlNext();
     virtual void controlVolumeDown();
     virtual void controlVolumeUp();
+    virtual void sendControlQ(uint8_t signal);
 
 protected:
 };

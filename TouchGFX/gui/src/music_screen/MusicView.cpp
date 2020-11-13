@@ -46,15 +46,33 @@ void MusicView::updateFileName()
 
 void MusicView::controlPlay()
 {
-	uint8_t msg = 1;
-	xQueueSend(music_msg_q, &msg, 0);
+	sendControlQ(2);
 }
 
-void MusicView::controlStop() {}
-void MusicView::controlPrev() {}
-void MusicView::controlNext() {}
-void MusicView::controlVolumeDown() {}
-void MusicView::controlVolumeUp() {}
+void MusicView::controlStop()
+{
+	sendControlQ(3);
+}
+void MusicView::controlPrev()
+{
+	sendControlQ(4);
+}
+void MusicView::controlNext()
+{
+	sendControlQ(5);
+}
+void MusicView::controlVolumeDown()
+{
+	sendControlQ(6);
+}
+void MusicView::controlVolumeUp()
+{
+	sendControlQ(7);
+}
+
+void MusicView::sendControlQ(uint8_t signal){
+	xQueueSend(music_msg_q, &signal, 0);
+}
 
 void MusicView::handleTickEvent()
 {

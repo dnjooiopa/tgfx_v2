@@ -74,6 +74,8 @@ void Error_Handler(void);
 #define SPDIF_RX0_GPIO_Port GPIOD
 #define SDMMC_CK_Pin GPIO_PIN_12
 #define SDMMC_CK_GPIO_Port GPIOC
+#define N1_Pin GPIO_PIN_15
+#define N1_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
@@ -118,6 +120,8 @@ void Error_Handler(void);
 #define FMC_D3_GPIO_Port GPIOD
 #define ARDUINO_D7_Pin GPIO_PIN_3
 #define ARDUINO_D7_GPIO_Port GPIOI
+#define N0_Pin GPIO_PIN_2
+#define N0_GPIO_Port GPIOI
 #define uSD_Detect_Pin GPIO_PIN_13
 #define uSD_Detect_GPIO_Port GPIOC
 #define FMC_A0_Pin GPIO_PIN_0
@@ -162,6 +166,8 @@ void Error_Handler(void);
 #define LCD_G6_GPIO_Port GPIOK
 #define LCD_G7_Pin GPIO_PIN_2
 #define LCD_G7_GPIO_Port GPIOK
+#define N2_Pin GPIO_PIN_8
+#define N2_GPIO_Port GPIOA
 #define OSC_25M_Pin GPIO_PIN_0
 #define OSC_25M_GPIO_Port GPIOH
 #define FMC_A2_Pin GPIO_PIN_2
@@ -314,6 +320,8 @@ void Error_Handler(void);
 #define FMC_D10_GPIO_Port GPIOE
 #define ULPI_D4_Pin GPIO_PIN_11
 #define ULPI_D4_GPIO_Port GPIOB
+#define N3_Pin GPIO_PIN_15
+#define N3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

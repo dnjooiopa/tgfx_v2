@@ -70,7 +70,7 @@ void PollingControlMusic()
 
 		// Pulse out
 		HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, SET);
-		vTaskDelay(50);
+		vTaskDelay(2);
 		HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, RESET);
 
 	}

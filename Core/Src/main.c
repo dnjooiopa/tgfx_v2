@@ -109,7 +109,7 @@ osThreadId btnTaskHandle;
 char msgBufferUART6[UART6_BUFFER_SIZE];
 char msgBufferUART1[UART1_BUFFER_SIZE];
 
-
+uint8_t isPlay = 0;
 
 /* USER CODE END PV */
 

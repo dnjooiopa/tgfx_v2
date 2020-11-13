@@ -63,12 +63,13 @@ protected:
     touchgfx::Box s1_box_1;
     touchgfx::ButtonWithLabel buttonWithLabel1;
     touchgfx::TextAreaWithOneWildcard MusicTextArea;
-    touchgfx::ButtonWithIcon PlayPause;
+    touchgfx::ButtonWithIcon Play;
     touchgfx::ButtonWithIcon Prev;
     touchgfx::ButtonWithIcon Next;
     touchgfx::ButtonWithIcon Stop;
     touchgfx::ButtonWithIcon VolDown;
     touchgfx::ButtonWithIcon VolUp;
+    touchgfx::ButtonWithIcon Pause;
 
     /*
      * Wildcard Buffers

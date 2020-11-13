@@ -27,10 +27,10 @@ MusicViewBase::MusicViewBase() :
     MusicTextArea.setWildcard(MusicTextAreaBuffer);
     MusicTextArea.setTypedText(touchgfx::TypedText(T_SINGLEUSEID6));
 
-    PlayPause.setXY(17, 200);
-    PlayPause.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID));
-    PlayPause.setIconXY(19, 14);
-    PlayPause.setAction(buttonCallback);
+    Play.setXY(17, 200);
+    Play.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID));
+    Play.setIconXY(19, 14);
+    Play.setAction(buttonCallback);
 
     Prev.setXY(166, 200);
     Prev.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID));
@@ -57,15 +57,22 @@ MusicViewBase::MusicViewBase() :
     VolUp.setIconXY(13, 14);
     VolUp.setAction(buttonCallback);
 
+    Pause.setXY(17, 200);
+    Pause.setVisible(false);
+    Pause.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PAUSE_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PAUSE_32_ID));
+    Pause.setIconXY(17, 14);
+    Pause.setAction(buttonCallback);
+
     add(s1_box_1);
     add(buttonWithLabel1);
     add(MusicTextArea);
-    add(PlayPause);
+    add(Play);
     add(Prev);
     add(Next);
     add(Stop);
     add(VolDown);
     add(VolUp);
+    add(Pause);
 }
 
 void MusicViewBase::setupScreen()
@@ -82,10 +89,10 @@ void MusicViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //Go to screen with no screen transition
         application().gotoscreenScreenNoTransition();
     }
-    else if (&src == &PlayPause)
+    else if (&src == &Play)
     {
-        //playerAndPause
-        //When PlayPause clicked call virtual function
+        //play
+        //When Play clicked call virtual function
         //Call controlPlay
         controlPlay();
     }
@@ -123,5 +130,12 @@ void MusicViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When VolUp clicked call virtual function
         //Call controlVolumeUp
         controlVolumeUp();
+    }
+    else if (&src == &Pause)
+    {
+        //pause
+        //When Pause clicked call virtual function
+        //Call controlPlay
+        controlPlay();
     }
 }

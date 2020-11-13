@@ -30,6 +30,9 @@ extern uint8_t uartMsgBuffer[UART_BUFF_SIZE];
 #include "ControlMusic.h"
 
 extern xQueueHandle music_msg_q;
+
+
+extern uint8_t isPlay;
 //----------------------------------------------
 
 void MusicView::updateFileName()
@@ -46,32 +49,82 @@ void MusicView::updateFileName()
 
 void MusicView::controlPlay()
 {
-	sendControlQ(2);
+	sendControlQ(2, 3);
 }
 
 void MusicView::controlStop()
 {
-	sendControlQ(3);
+	sendControlQ(3, 1);
 }
 void MusicView::controlPrev()
 {
-	sendControlQ(4);
+	sendControlQ(4, 2);
 }
 void MusicView::controlNext()
 {
-	sendControlQ(5);
+	sendControlQ(5, 2);
 }
 void MusicView::controlVolumeDown()
 {
-	sendControlQ(6);
+	sendControlQ(6, 0);
 }
 void MusicView::controlVolumeUp()
 {
-	sendControlQ(7);
+	sendControlQ(7, 0);
 }
 
-void MusicView::sendControlQ(uint8_t signal){
+void MusicView::sendControlQ(uint8_t signal, uint8_t from){
+
+	if(from == 3)
+	{
+		if(isPlay == 0){
+			isPlay = 1;
+			Play.setVisible(false);
+			Play.invalidate();
+
+			Pause.setVisible(true);
+			Pause.invalidate();
+		}else{
+			isPlay = 0;
+			Pause.setVisible(false);
+			Pause.invalidate();
+
+			Play.setVisible(true);
+			Play.invalidate();
+		}
+	}else if(from == 2){
+		isPlay = 1;
+		Play.setVisible(false);
+		Play.invalidate();
+
+		Pause.setVisible(true);
+		Pause.invalidate();
+	}else if(from == 1){
+		isPlay = 0;
+		Pause.setVisible(false);
+		Pause.invalidate();
+
+		Play.setVisible(true);
+		Play.invalidate();
+	}
+
 	xQueueSend(music_msg_q, &signal, 0);
+}
+
+void MusicView::playInit(){
+	if(isPlay == 0){
+		Play.setVisible(true);
+		Play.invalidate();
+
+		Pause.setVisible(false);
+		Pause.invalidate();
+	}else{
+		Play.setVisible(false);
+		Play.invalidate();
+
+		Pause.setVisible(true);
+		Pause.invalidate();
+	}
 }
 
 void MusicView::handleTickEvent()

@@ -254,7 +254,7 @@
             "IconY": 14,
             "IconHeight": 32,
             "IconWidth": 23,
-            "Name": "PlayPause",
+            "Name": "Play",
             "X": 17,
             "Y": 200,
             "Width": 60,
@@ -375,6 +375,28 @@
             "Clickable": false,
             "Fadeable": false,
             "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Pause_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Pause_32.png",
+            "IconX": 17,
+            "IconY": 14,
+            "IconHeight": 32,
+            "IconWidth": 26,
+            "Name": "Pause",
+            "X": 17,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
           }
         ],
         "Interactions": [
@@ -392,10 +414,10 @@
             }
           },
           {
-            "InteractionName": "playerAndPause",
+            "InteractionName": "play",
             "HasCompletedTrigger": false,
             "Trigger": {
-              "TriggerComponent": "PlayPause",
+              "TriggerComponent": "Play",
               "Type": "TriggerClicked"
             },
             "Action": {
@@ -460,6 +482,18 @@
             },
             "Action": {
               "FunctionName": "controlVolumeUp",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "pause",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "Pause",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlPlay",
               "Type": "ActionCustom"
             }
           }

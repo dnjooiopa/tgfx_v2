@@ -9,6 +9,7 @@ MusicPresenter::MusicPresenter(MusicView& v)
 
 void MusicPresenter::activate()
 {
+	view.sendControlQ(0);
 	view.updateFileName();
 }
 

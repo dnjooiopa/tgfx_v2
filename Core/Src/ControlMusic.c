@@ -8,10 +8,18 @@
 xQueueHandle music_msg_q;
 uint8_t msg;
 
+void PollingControlMusicInit()
+{
+	music_msg_q = xQueueGenericCreate(1, 1, 0);
+
+	HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, RESET);
+	HAL_GPIO_WritePin(N2_GPIO_Port, N2_Pin, RESET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, RESET);
+	HAL_GPIO_WritePin(N0_GPIO_Port, N0_Pin, RESET);
+}
+
 void signalOut(uint8_t controlSignal)
 {
-
-	GPIO_PinState n3_stat = RESET;
 	GPIO_PinState n2_stat = RESET;
 	GPIO_PinState n1_stat = RESET;
 	GPIO_PinState n0_stat = RESET;
@@ -46,20 +54,10 @@ void signalOut(uint8_t controlSignal)
 		break;
 	}
 
-	HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, n3_stat);
+
 	HAL_GPIO_WritePin(N2_GPIO_Port, N2_Pin, n2_stat);
 	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, n1_stat);
 	HAL_GPIO_WritePin(N0_GPIO_Port, N0_Pin, n0_stat);
-}
-
-void PollingControlMusicInit()
-{
-	music_msg_q = xQueueGenericCreate(1, 1, 0);
-
-	HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, RESET);
-	HAL_GPIO_WritePin(N2_GPIO_Port, N2_Pin, RESET);
-	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, RESET);
-	HAL_GPIO_WritePin(N0_GPIO_Port, N0_Pin, RESET);
 }
 
 // PORT LSB->MSB I-A-A-B
@@ -68,5 +66,12 @@ void PollingControlMusic()
 	if (xQueueReceive(music_msg_q, &msg, 0) == pdTRUE)
 	{
 		signalOut(msg);
+		vTaskDelay(10);
+
+		// Pulse out
+		HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, SET);
+		vTaskDelay(50);
+		HAL_GPIO_WritePin(N3_GPIO_Port, N3_Pin, RESET);
+
 	}
 }

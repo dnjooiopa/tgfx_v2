@@ -243,6 +243,138 @@
             "Clickable": false,
             "Fadeable": false,
             "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Play_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Play_32.png",
+            "IconX": 19,
+            "IconY": 14,
+            "IconHeight": 32,
+            "IconWidth": 23,
+            "Name": "PlayPause",
+            "X": 17,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Go_back_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Go_back_32.png",
+            "IconX": 14,
+            "IconY": 15,
+            "IconHeight": 30,
+            "IconWidth": 32,
+            "Name": "Prev",
+            "X": 166,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Go_next_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Go_next_32.png",
+            "IconX": 14,
+            "IconY": 15,
+            "IconHeight": 30,
+            "IconWidth": 32,
+            "Name": "Next",
+            "X": 226,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Stop_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Stop_32.png",
+            "IconX": 14,
+            "IconY": 14,
+            "IconHeight": 32,
+            "IconWidth": 32,
+            "Name": "Stop",
+            "X": 88,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Sound_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Sound_32.png",
+            "IconX": 13,
+            "IconY": 14,
+            "IconHeight": 32,
+            "IconWidth": 34,
+            "Name": "VolDown",
+            "X": 314,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Dark_Icons_Sound_32.png",
+            "IconReleased": "__designer\\Dark_Icons_Sound_32.png",
+            "IconX": 13,
+            "IconY": 14,
+            "IconHeight": 32,
+            "IconWidth": 34,
+            "Name": "VolUp",
+            "X": 383,
+            "Y": 200,
+            "Width": 60,
+            "Height": 60,
+            "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
           }
         ],
         "Interactions": [
@@ -257,6 +389,78 @@
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "screen",
               "Type": "ActionGotoScreen"
+            }
+          },
+          {
+            "InteractionName": "playerAndPause",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "PlayPause",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlPlay",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "stopMusic",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "Stop",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlStop",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "playPrevious",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "Prev",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlPrev",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "playNext",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "Next",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlNext",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "volumeDown",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "VolDown",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlVolumeDown",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "volumeUp",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "VolUp",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "controlVolumeUp",
+              "Type": "ActionCustom"
             }
           }
         ],

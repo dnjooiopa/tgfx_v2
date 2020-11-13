@@ -27,9 +27,45 @@ MusicViewBase::MusicViewBase() :
     MusicTextArea.setWildcard(MusicTextAreaBuffer);
     MusicTextArea.setTypedText(touchgfx::TypedText(T_SINGLEUSEID6));
 
+    PlayPause.setXY(17, 200);
+    PlayPause.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID));
+    PlayPause.setIconXY(19, 14);
+    PlayPause.setAction(buttonCallback);
+
+    Prev.setXY(166, 200);
+    Prev.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID));
+    Prev.setIconXY(14, 15);
+    Prev.setAction(buttonCallback);
+
+    Next.setXY(226, 200);
+    Next.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_NEXT_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_NEXT_32_ID));
+    Next.setIconXY(14, 15);
+    Next.setAction(buttonCallback);
+
+    Stop.setXY(88, 200);
+    Stop.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_STOP_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_STOP_32_ID));
+    Stop.setIconXY(14, 14);
+    Stop.setAction(buttonCallback);
+
+    VolDown.setXY(314, 200);
+    VolDown.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_SOUND_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_SOUND_32_ID));
+    VolDown.setIconXY(13, 14);
+    VolDown.setAction(buttonCallback);
+
+    VolUp.setXY(383, 200);
+    VolUp.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_SOUND_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_SOUND_32_ID));
+    VolUp.setIconXY(13, 14);
+    VolUp.setAction(buttonCallback);
+
     add(s1_box_1);
     add(buttonWithLabel1);
     add(MusicTextArea);
+    add(PlayPause);
+    add(Prev);
+    add(Next);
+    add(Stop);
+    add(VolDown);
+    add(VolUp);
 }
 
 void MusicViewBase::setupScreen()
@@ -45,5 +81,47 @@ void MusicViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When buttonWithLabel1 clicked change screen to screen
         //Go to screen with no screen transition
         application().gotoscreenScreenNoTransition();
+    }
+    else if (&src == &PlayPause)
+    {
+        //playerAndPause
+        //When PlayPause clicked call virtual function
+        //Call controlPlay
+        controlPlay();
+    }
+    else if (&src == &Prev)
+    {
+        //playPrevious
+        //When Prev clicked call virtual function
+        //Call controlPrev
+        controlPrev();
+    }
+    else if (&src == &Next)
+    {
+        //playNext
+        //When Next clicked call virtual function
+        //Call controlNext
+        controlNext();
+    }
+    else if (&src == &Stop)
+    {
+        //stopMusic
+        //When Stop clicked call virtual function
+        //Call controlStop
+        controlStop();
+    }
+    else if (&src == &VolDown)
+    {
+        //volumeDown
+        //When VolDown clicked call virtual function
+        //Call controlVolumeDown
+        controlVolumeDown();
+    }
+    else if (&src == &VolUp)
+    {
+        //volumeUp
+        //When VolUp clicked call virtual function
+        //Call controlVolumeUp
+        controlVolumeUp();
     }
 }

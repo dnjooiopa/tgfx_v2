@@ -18,7 +18,7 @@ void PollingControlMusicInit(){
 void PollingControlMusic(){
 	if (xQueueReceive(music_msg_q, &msg, 0) == pdTRUE){
 		if(msg == 1){
-
+			HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
 		}
 	}
 }

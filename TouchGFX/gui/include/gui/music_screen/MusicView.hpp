@@ -15,6 +15,14 @@ public:
     virtual void handleTickEvent();
 
     virtual void updateFileName();
+
+    virtual void controlPlay();
+    virtual void controlStop();
+    virtual void controlPrev();
+    virtual void controlNext();
+    virtual void controlVolumeDown();
+    virtual void controlVolumeUp();
+
 protected:
 };
 

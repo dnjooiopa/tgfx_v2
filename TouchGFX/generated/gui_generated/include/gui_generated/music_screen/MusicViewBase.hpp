@@ -10,6 +10,7 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/ButtonWithIcon.hpp>
 
 class MusicViewBase : public touchgfx::View<MusicPresenter>
 {
@@ -17,6 +18,39 @@ public:
     MusicViewBase();
     virtual ~MusicViewBase() {}
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void controlPlay()
+    {
+        // Override and implement this function in Music
+    }
+
+    virtual void controlStop()
+    {
+        // Override and implement this function in Music
+    }
+
+    virtual void controlPrev()
+    {
+        // Override and implement this function in Music
+    }
+
+    virtual void controlNext()
+    {
+        // Override and implement this function in Music
+    }
+
+    virtual void controlVolumeDown()
+    {
+        // Override and implement this function in Music
+    }
+
+    virtual void controlVolumeUp()
+    {
+        // Override and implement this function in Music
+    }
 
 protected:
     FrontendApplication& application() {
@@ -29,6 +63,12 @@ protected:
     touchgfx::Box s1_box_1;
     touchgfx::ButtonWithLabel buttonWithLabel1;
     touchgfx::TextAreaWithOneWildcard MusicTextArea;
+    touchgfx::ButtonWithIcon PlayPause;
+    touchgfx::ButtonWithIcon Prev;
+    touchgfx::ButtonWithIcon Next;
+    touchgfx::ButtonWithIcon Stop;
+    touchgfx::ButtonWithIcon VolDown;
+    touchgfx::ButtonWithIcon VolUp;
 
     /*
      * Wildcard Buffers

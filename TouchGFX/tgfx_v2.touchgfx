@@ -94,27 +94,28 @@
             "Moveable": false
           },
           {
-            "TextId": "SingleUseId2",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 0,
-              "Green": 0,
-              "Blue": 0
-            },
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
             "Alpha": 255,
-            "AutoSize": false,
-            "LineSpacing": 0,
-            "Wildcard1": {
-              "TextId": "SingleUseId3",
-              "UseBuffer": true,
-              "BufferSize": 17
+            "TextId": "SingleUseId5",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
-            "Name": "RX_text_area",
-            "X": 12,
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Style": "Style4",
+            "Name": "Music",
+            "X": 290,
             "Y": 18,
-            "Width": 468,
-            "Height": 37,
-            "Type": "TextArea",
+            "Width": 170,
+            "Height": 60,
+            "Type": "ButtonWithLabel",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -146,6 +147,19 @@
               "FunctionName": "toggleLED",
               "Type": "ActionCustom"
             }
+          },
+          {
+            "InteractionName": "screen_to_music",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "Music",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Music",
+              "Type": "ActionGotoScreen"
+            }
           }
         ],
         "Name": "screen",
@@ -156,9 +170,9 @@
         "Components": [
           {
             "Color": {
-              "Red": 35,
-              "Green": 117,
-              "Blue": 29
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "Alpha": 255,
             "Name": "s1_box_1",
@@ -177,13 +191,53 @@
             "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
             "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
             "Alpha": 255,
+            "TextId": "SingleUseId4",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
             "Style": "Style4",
-            "Name": "s1_btn_1",
-            "X": 155,
-            "Y": 106,
+            "Name": "buttonWithLabel1",
+            "X": 17,
+            "Y": 9,
             "Width": 170,
             "Height": 60,
-            "Type": "Button",
+            "Type": "ButtonWithLabel",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId6",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 0,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId7",
+              "UseBuffer": true,
+              "BufferSize": 17
+            },
+            "Name": "MusicTextArea",
+            "X": 77,
+            "Y": 111,
+            "Width": 345,
+            "Height": 25,
+            "Type": "TextArea",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -193,10 +247,10 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "s1_s",
+            "InteractionName": "music_to_screen",
             "HasCompletedTrigger": false,
             "Trigger": {
-              "TriggerComponent": "s1_btn_1",
+              "TriggerComponent": "buttonWithLabel1",
               "Type": "TriggerClicked"
             },
             "Action": {
@@ -206,7 +260,7 @@
             }
           }
         ],
-        "Name": "Screen1",
+        "Name": "Music",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
       }
@@ -218,11 +272,19 @@
         "IsResource": false
       },
       {
-        "TextEntryId": "SingleUseId2",
+        "TextEntryId": "SingleUseId4",
         "IsResource": false
       },
       {
-        "TextEntryId": "SingleUseId3",
+        "TextEntryId": "SingleUseId5",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId6",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId7",
         "IsResource": false
       }
     ],

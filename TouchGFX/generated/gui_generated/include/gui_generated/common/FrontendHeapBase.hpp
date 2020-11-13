@@ -10,13 +10,14 @@
 #include <touchgfx/transitions/NoTransition.hpp>
 
 
+
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
 #include <gui/screen_screen/screenView.hpp>
 #include <gui/screen_screen/screenPresenter.hpp>
-#include <gui/screen1_screen/Screen1View.hpp>
-#include <gui/screen1_screen/Screen1Presenter.hpp>
+#include <gui/music_screen/MusicView.hpp>
+#include <gui/music_screen/MusicPresenter.hpp>
 
 
 /**
@@ -40,7 +41,7 @@ public:
      * @note All view types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< screenView,
-            touchgfx::meta::TypeList< Screen1View,
+            touchgfx::meta::TypeList< MusicView,
             touchgfx::meta::Nil >
             > GeneratedViewTypes;
 
@@ -54,7 +55,7 @@ public:
      * @note All presenter types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< screenPresenter,
-            touchgfx::meta::TypeList< Screen1Presenter,
+            touchgfx::meta::TypeList< MusicPresenter,
             touchgfx::meta::Nil >
             > GeneratedPresenterTypes;
 

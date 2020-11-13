@@ -34,18 +34,18 @@ screenViewBase::screenViewBase() :
     ledControl.setLabelColorPressed(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
     ledControl.setAction(buttonCallback);
 
-    RX_text_area.setPosition(12, 18, 468, 37);
-    RX_text_area.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
-    RX_text_area.setLinespacing(0);
-    Unicode::snprintf(RX_text_areaBuffer, RX_TEXT_AREA_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID3).getText());
-    RX_text_area.setWildcard(RX_text_areaBuffer);
-    RX_text_area.setTypedText(touchgfx::TypedText(T_SINGLEUSEID2));
+    Music.setXY(290, 18);
+    Music.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
+    Music.setLabelText(touchgfx::TypedText(T_SINGLEUSEID5));
+    Music.setLabelColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    Music.setLabelColorPressed(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    Music.setAction(buttonCallback);
 
     add(box1);
     add(button1);
     add(ball);
     add(ledControl);
-    add(RX_text_area);
+    add(Music);
 }
 
 void screenViewBase::setupScreen()
@@ -68,5 +68,12 @@ void screenViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When ledControl clicked call virtual function
         //Call toggleLED
         toggleLED();
+    }
+    else if (&src == &Music)
+    {
+        //screen_to_music
+        //When Music clicked change screen to Music
+        //Go to Music with no screen transition
+        application().gotoMusicScreenNoTransition();
     }
 }

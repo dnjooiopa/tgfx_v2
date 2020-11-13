@@ -14,12 +14,6 @@ public:
     virtual void move_up();
     virtual void toggleLED();
 
-    virtual void handleTickEvent();
-
-    virtual void updateWildCard();
-
-    virtual void updateUartText();
-
 protected:
     int8_t direction = 10;
     uint8_t strState = 1;

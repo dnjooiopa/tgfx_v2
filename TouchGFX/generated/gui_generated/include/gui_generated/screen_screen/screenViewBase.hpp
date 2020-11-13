@@ -12,7 +12,6 @@
 #include <touchgfx/widgets/canvas/Circle.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB888.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class screenViewBase : public touchgfx::View<screenPresenter>
 {
@@ -47,13 +46,7 @@ protected:
     touchgfx::Circle ball;
     touchgfx::PainterRGB888 ballPainter;
     touchgfx::ButtonWithLabel ledControl;
-    touchgfx::TextAreaWithOneWildcard RX_text_area;
-
-    /*
-     * Wildcard Buffers
-     */
-    static const uint16_t RX_TEXT_AREA_SIZE = 17;
-    touchgfx::Unicode::UnicodeChar RX_text_areaBuffer[RX_TEXT_AREA_SIZE];
+    touchgfx::ButtonWithLabel Music;
 
 private:
 

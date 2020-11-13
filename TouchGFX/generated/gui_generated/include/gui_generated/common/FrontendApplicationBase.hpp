@@ -18,6 +18,9 @@ public:
     // screen
     void gotoscreenScreenNoTransition();
 
+    // Music
+    void gotoMusicScreenNoTransition();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -25,6 +28,9 @@ protected:
 
     // screen
     void gotoscreenScreenNoTransitionImpl();
+
+    // Music
+    void gotoMusicScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

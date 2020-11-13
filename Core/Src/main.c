@@ -31,6 +31,7 @@
 #include "btnTask.h"
 
 #include "PollingRoutines.h"
+#include "ControlMusic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,6 +96,7 @@ SDRAM_HandleTypeDef hsdram1;
 
 osThreadId defaultTaskHandle;
 osThreadId uartTaskHandle;
+osThreadId musicTaskHandle;
 osSemaphoreId binarySemMsgUart1Handle;
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
@@ -130,6 +132,7 @@ static void MX_USART1_UART_Init(void);
 static void MX_USART6_UART_Init(void);
 void StartDefaultTask(void const * argument);
 void StartUartTask(void const * argument);
+void StartMusicTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 /* USER CODE END PFP */
@@ -221,6 +224,10 @@ int main(void)
   /* definition and creation of uartTask */
   osThreadDef(uartTask, StartUartTask, osPriorityNormal, 0, 512);
   uartTaskHandle = osThreadCreate(osThread(uartTask), NULL);
+
+  /* definition and creation of musicTask */
+  osThreadDef(musicTask, StartMusicTask, osPriorityIdle, 0, 128);
+  musicTaskHandle = osThreadCreate(osThread(musicTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
 
@@ -1272,6 +1279,26 @@ void StartUartTask(void const * argument)
 	  osDelay(1);
   }
   /* USER CODE END StartUartTask */
+}
+
+/* USER CODE BEGIN Header_StartMusicTask */
+/**
+* @brief Function implementing the musicTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartMusicTask */
+void StartMusicTask(void const * argument)
+{
+  /* USER CODE BEGIN StartMusicTask */
+  /* Infinite loop */
+	PollingControlMusicInit();
+  for(;;)
+  {
+	PollingControlMusic();
+    osDelay(1);
+  }
+  /* USER CODE END StartMusicTask */
 }
 
 /**

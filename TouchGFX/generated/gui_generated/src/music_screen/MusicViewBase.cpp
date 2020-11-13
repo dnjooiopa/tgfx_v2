@@ -20,7 +20,7 @@ MusicViewBase::MusicViewBase() :
     buttonWithLabel1.setLabelColorPressed(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
     buttonWithLabel1.setAction(buttonCallback);
 
-    MusicTextArea.setPosition(77, 111, 345, 25);
+    MusicTextArea.setPosition(38, 106, 405, 45);
     MusicTextArea.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
     MusicTextArea.setLinespacing(0);
     Unicode::snprintf(MusicTextAreaBuffer, MUSICTEXTAREA_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID7).getText());
